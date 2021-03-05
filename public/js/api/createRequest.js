@@ -9,28 +9,42 @@ const createRequest = (options = {}) => {
     xhr.responseType = 'json';
     // xhr.send();
 
-    xhr.onreadystatechange = function () { 
-        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            console.log(xhr.responseText); 
-        }; 
+    xhr.open(xhr.method, URL);
+    xhr.send();
+
+    xhr.onload = function () {
+        if (xhr.status != 200) { 
+            console.log(`${xhr.status}: ${xhr.statusText}:${xhr.response}`); 
+            options.callback(xhr.status, xhr.response);
+        } else { 
+            console.log(`${xhr.response}`);
+            options.callback(xhr.status, xhr.response);
+        }
     };
 
+    xhr.onerror = function () {
+        console.log(`${xhr.status}: ${xhr.statusText}:${xhr.response}`);
+    };
+
+    // xhr.onreadystatechange = function () { 
+    //     if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+    //         console.log(xhr.response);
+    //         callback(xhr.status, xhr.response);
+    //     } else {
+    //         callback(xhr.status, xhr.response);
+    //     }
+    // };
+
     if (xhr.method == 'GET') {
-        for (let key in data) { 
-            URL += `${key}=${data[key]}`; 
+        for (let key in options.data) {
+            URL += `${key}=${options.data[key]}`;
         }
-        
-        xhr.open('GET', URL);
-        xhr.send();
     } else {
         let formData = new FormData();
     
-        for (let key in data) {
-            formData.append(key, data[key]);
+        for (let key in options.data) {
+            formData.append(key, options.data[key]);
         }
-
-        xhr.open(xhr.method, URL); //
-        xhr.send(formData);
     }
 
 };

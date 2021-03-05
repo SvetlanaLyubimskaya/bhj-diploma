@@ -3,7 +3,7 @@
  * Имеет свойство URL, равно пустой строке.
  * */
 class Entity {
-  URL = '';
+  static URL = '';
 
   /**
    * Запрашивает с сервера список данных.
@@ -29,7 +29,7 @@ class Entity {
     return createRequest({
       url: this.URL,
       data: data,
-      method: 'POST',
+      method: 'PUT',
       responseType: 'json',
       callback: callback
     });
@@ -43,7 +43,7 @@ class Entity {
     return createRequest({
       url: this.URL,
       data: data,
-      method: 'POST',
+      method: 'DELETE',
       responseType: 'json',
       callback: callback
     });

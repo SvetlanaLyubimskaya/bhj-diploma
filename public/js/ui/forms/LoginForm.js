@@ -9,9 +9,15 @@ class LoginForm extends AsyncForm {
    * устанавливает состояние App.setState( 'user-logged' ) и
    * закрывает окно, в котором находится форма
    * */
-  onSubmit(data) {
-    User.login(data);
-    App.setState('user-logged');
-    const menuItemLogin = document.querySelector('.menu-item_login').close();
+  onSubmit(options) {
+    User.login(options, (err, response) => {
+      if(response.success) {
+        App.setState('user-logged');
+        App.getModal('login').close();
+      } else {
+        console.log(err);
+      }
+    });
+    
   }
 }
