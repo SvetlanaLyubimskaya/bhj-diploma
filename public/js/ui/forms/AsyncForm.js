@@ -40,8 +40,8 @@ class AsyncForm {
    * }
    * */
   getData() {
-    let myForm = document.getElementById('myform');
-    let formData = new FormData(myForm);
+    // let myForm = document.getElementById('myform');
+    let formData = new FormData(this.element);
     let entries = formData.entries();
 
     let data = {};
