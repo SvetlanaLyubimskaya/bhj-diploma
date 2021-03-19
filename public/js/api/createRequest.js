@@ -9,25 +9,37 @@ const createRequest = (options = {}) => {
     xhr.responseType = options.responseType;
     console.log(options);
     URL = options.url;
-
+    
     if (options.method == 'GET') {
+        
         URL += '?';
         for (let key in options.data) {
             URL += `${key}=${options.data[key]}&`;
         }
         URL = URL.length - 1;
+        // xhr.open(options.method, URL);
+        // xhr.send();
     } else {
-        let formData = new FormData();
+        const formData = new FormData();
 
         for (let key in options.data) {
             formData.append(key, options.data[key]);
         }
-        
+        // xhr.open(options.method, URL);
+        // xhr.send(formData);
     }
-
+    // xhr.open(options.method, URL);
+    // xhr.send(options.method == 'GET' ? null : formData); //Uncaught ReferenceError: formData is not defined
+    
     try {
         xhr.open(options.method, URL);
-        xhr.send();
+        // xhr.send(options.method == 'GET' ? null : formData); //ReferenceError: formData is not defined
+        if (options.method == 'GET') {
+            xhr.send();
+        } else {
+            xhr.send(formData);
+        }
+      
     } catch (err) {
         console.log(err);
         options.callback(err);
