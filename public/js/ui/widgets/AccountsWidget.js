@@ -16,12 +16,10 @@ class AccountsWidget {
     this.element = element;
     if (!this.element ) {
       throw new Error( 'Элемент не существует' );
+    } else {
+      this.registerEvents();
+      this.update();
     }
-    
-    this.currentAccountId = null;
-
-    this.registerEvents();
-    this.update();
   }
 
   /**
@@ -42,7 +40,10 @@ class AccountsWidget {
     const accountsPanel = document.querySelector('.accounts-panel');
     accountsPanel.addEventListener('click', (e) => {
       e.preventDefault();
-      this.onSelectAccount();
+      const account = document.querySelector('.account');
+      if (account) {
+        this.onSelectAccount();
+      }
     });
   }
 
@@ -124,7 +125,7 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-    return `
+    let html = `
       <li class="account" data-id="${ item.id }">
           <a href="#">
               <span>${ item.name }</span> / 
@@ -132,6 +133,7 @@ class AccountsWidget {
           </a>
       </li>
     `;
+    return html;
   }
 
   /**
@@ -140,14 +142,7 @@ class AccountsWidget {
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItem(data){
-    data.forEach(item => {
-      const {name, id} = item,
-          sum = item.sum.toLocaleString('en'),
-          html = this.getAccountHTML({
-            name, id, sum
-          });
-      this.element.insertAdjacentHTML('beforeend', html);
-    });
+  renderItem(item){
+    this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
   }
 }

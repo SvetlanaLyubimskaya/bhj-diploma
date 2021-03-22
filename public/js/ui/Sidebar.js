@@ -37,21 +37,24 @@ class Sidebar {
    * */
   static initAuthLinks() {
     const menuItemRegister = document.querySelector('.menu-item_register');
-    menuItemRegister.onclick = function() {
+    menuItemRegister.addEventListener('click', (e) => {
+      e.preventDefault();
       App.getModal('register').open(); 
-    }
+    });
 
     const menuItemLogin = document.querySelector('.menu-item_login');
-    menuItemLogin.onclick = function () {
+    menuItemLogin.addEventListener('click', (e) => {
+      e.preventDefault();
       App.getModal('login').open(); 
-    }
+    });
 
     const menuItemLogout = document.querySelector('.menu-item_logout');
-    menuItemLogout.onclick = function () {
-      this.User.logout();
-      if (response.success) {
+    menuItemLogout.addEventListener('click', (e) => {
+      e.preventDefault();
+      User.logout();
+      if (User.logout()) {
         App.setState('init');
       }
-    }
+    });
   }
 }

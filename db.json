@@ -5,6 +5,24 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "Иван",
+      "email": "ivan@biz.pro",
+      "password": "odin",
+      "id": "vttv76y0kmiuelci"
+    },
+    {
+      "name": "Антон",
+      "email": "test@test.com",
+      "password": "1234",
+      "id": "vttv7bxokmivdrca"
+    },
+    {
+      "name": "Oleg",
+      "email": "oleg@demo.ru",
+      "password": "1234",
+      "id": "vttv75ykkmivw51e"
     }
   ],
   "accounts": [
@@ -22,6 +40,11 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "сб",
+      "user_id": "vttv76y0kmiuelci",
+      "id": "vttv74xckmiuh8w2"
     }
   ],
   "transactions": [

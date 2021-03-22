@@ -40,7 +40,7 @@ class User {
       responseType: 'json',
       data: data,
       callback: (err, response) => {
-        if (response) {
+        if (response.success) {
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -62,7 +62,7 @@ class User {
       responseType: 'json',
       data: data,
       callback: (err, response) => {
-        if (response) {
+        if (response.success) {
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -83,7 +83,7 @@ class User {
       responseType: 'json',
       data: data,
       callback: (err, response) => {
-        if (response) {
+        if (response.success) {
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -102,7 +102,7 @@ class User {
       responseType: 'json',
       data: data,
       callback: (err, response) => {
-        if (response) {
+        if (response.success) {
           this.unsetCurrent(response.user);
         }
         callback(err, response);
