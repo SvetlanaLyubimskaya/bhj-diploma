@@ -21,7 +21,7 @@ class CreateTransactionForm extends AsyncForm {
       if (response.success) {
         const accountsSelect = this.element.querySelector('.accounts-select');
         accountsSelect.innerHTML = '';
-        
+        // исп метод forEach для вывода списка счетов
         accountsSelect.insertAdjacentHTML('beforeEnd', response.data.forEach(element => {`
         <option value="${element.id}">${element.name}</option>`}));
       } else {

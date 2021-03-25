@@ -28,12 +28,14 @@ class TransactionsWidget {
     const createIncomeButton = this.element.querySelector( '.create-income-button' );
     const createExpenseButton = this.element.querySelector( '.create-expense-button' );
 
-    createIncomeButton.addEventListener( 'click', () => {
+    createIncomeButton.addEventListener( 'click', (e) => {
+      e.preventDefault();
       App.getModal('newIncome').open();
     });
 
-    createExpenseButton.addEventListener( 'click', () => {
+    createExpenseButton.addEventListener( 'click', (e) => {
       App.getModal('newExpense').open();
+      e.preventDefault();
     });
   }
 }

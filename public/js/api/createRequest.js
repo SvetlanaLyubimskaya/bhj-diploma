@@ -23,7 +23,7 @@ const createRequest = (options = {}) => {
         for (let key in options.data) {
             URL += `${key}=${options.data[key]}&`;
         }
-        URL = URL.length - 1;
+        URL = URL.substring(0, URL.length - 1);
         xhr.send();
     } else {
         const formData = new FormData();
@@ -35,7 +35,7 @@ const createRequest = (options = {}) => {
     }
 
     xhr.onload = function () {
-        console.log(xhr.response);
+        // console.log(xhr.response);
         options.callback(xhr.status, xhr.response);
     };
 

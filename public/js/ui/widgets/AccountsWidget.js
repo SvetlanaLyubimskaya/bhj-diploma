@@ -42,7 +42,7 @@ class AccountsWidget {
       e.preventDefault();
       const account = document.querySelector('.account');
       if (account) {
-        this.onSelectAccount();
+        this.onSelectAccount(account);
       }
     });
   }
@@ -64,7 +64,10 @@ class AccountsWidget {
       Account.list(user, (err, response) => {
         if (response.success) {
           this.clear();
-          this.renderItem();
+          // исп метод forEach для вывода списка счетов (item - объект с данными о счёте)
+          response.data.forEach(item => {
+            this.renderItem(item);
+          });
         } else {
           console.log(err);
         }
@@ -90,33 +93,23 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-    const account = document.querySelector('.active');
-    if (account) {
-        account.classList.remove('active');
+    if ( this.currentAccountId ) {
+      const account = this.element.querySelector( `.account[data-id="${this.currentAccountId}"]` );
+      if (account) {
+        account.classList.remove( 'active' );
+      } else {
+        this.currentAccountId = null;
       }
-    element.classList.add('active');
+    }
+
+    element.classList.add( 'active' );
+
+    const { id } = element.dataset;
+
+    this.currentAccountId = id;
+
     App.showPage('transactions', { account_id: element.dataset.id });
 
-    // if ( this.currentAccountId ) {
-    //   const account = this.element
-    //       .querySelector( `.account[data-id="${this.currentAccountId}"]` );
-    //   if (account) {
-    //     account.classList.remove( 'active' );
-    //   }
-    //   else {
-    //     this.currentAccountId = null;
-    //   }
-    // }
-
-    // element.classList.add( 'active' );
-
-    // const { id } = element.dataset;
-
-    // this.currentAccountId = id;
-
-    // App.showPage('transactions', {
-    //   account_id: id
-    // });
   }
 
   /**
@@ -125,11 +118,14 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
+    let id = item.id;
+    let name = item.name;
+    let sum = item.sum;
     let html = `
-      <li class="account" data-id="${ item.id }">
+      <li class="account" data-id="${ id }">
           <a href="#">
-              <span>${ item.name }</span> / 
-              <span>${ item.sum } ₽</span>
+              <span>${ name }</span> / 
+              <span>${ sum } ₽</span>
           </a>
       </li>
     `;

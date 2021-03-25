@@ -45,6 +45,26 @@
       "name": "сб",
       "user_id": "vttv76y0kmiuelci",
       "id": "vttv74xckmiuh8w2"
+    },
+    {
+      "name": "Сбербанк",
+      "user_id": "vttv75ykkmivw51e",
+      "id": "vttv7ajwkmooaby7"
+    },
+    {
+      "name": "ВТБ",
+      "user_id": "vttv75ykkmivw51e",
+      "id": "vttv77tkkmopwfe6"
+    },
+    {
+      "name": "ПочтаБанк",
+      "user_id": "vttv75ykkmivw51e",
+      "id": "vttv7b20kmoqcisd"
+    },
+    {
+      "name": "втб",
+      "user_id": "vttv76y0kmiuelci",
+      "id": "vttv732kkmor5kw6"
     }
   ],
   "transactions": [
