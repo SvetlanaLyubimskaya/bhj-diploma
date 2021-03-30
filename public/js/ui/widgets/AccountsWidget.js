@@ -16,10 +16,10 @@ class AccountsWidget {
     this.element = element;
     if (!this.element ) {
       throw new Error( 'Элемент не существует' );
-    } else {
-      this.registerEvents();
-      this.update();
-    }
+    } 
+    this.registerEvents();
+    this.update();
+    
   }
 
   /**
@@ -37,10 +37,10 @@ class AccountsWidget {
       App.getModal('createAccount').open();
     });
 
-    const accountsPanel = document.querySelector('.accounts-panel');
-    accountsPanel.addEventListener('click', (e) => {
+    this.element.addEventListener('click', (e) => {
       e.preventDefault();
-      const account = document.querySelector('.account');
+      //возвращает ближайшего предка,соответствующего селектору. на котором был клик
+      const account = e.target.closest('.account'); 
       if (account) {
         this.onSelectAccount(account);
       }
@@ -65,12 +65,8 @@ class AccountsWidget {
         if (response.success) {
           this.clear();
           // исп метод forEach для вывода списка счетов (item - объект с данными о счёте)
-          response.data.forEach(item => {
-            this.renderItem(item);
-          });
-        } else {
-          console.log(err);
-        }
+          response.data.forEach(item => this.renderItem(item));
+        } 
       });
     }
   }

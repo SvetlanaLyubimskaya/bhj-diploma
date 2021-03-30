@@ -22,12 +22,10 @@ class CreateTransactionForm extends AsyncForm {
         const accountsSelect = this.element.querySelector('.accounts-select');
         accountsSelect.innerHTML = '';
         // исп метод forEach для вывода списка счетов
-        accountsSelect.insertAdjacentHTML('beforeEnd', response.data.forEach(element => {`
-        <option value="${element.id}">${element.name}</option>`}));
-      } else {
-        console.log(err);
-      }
-
+        accountsSelect.insertAdjacentHTML('beforeEnd', response.data.forEach(element => {
+          return `<option value="${element.id}">${element.name}</option>`
+        }));
+      } 
     });
     
   }
@@ -43,9 +41,8 @@ class CreateTransactionForm extends AsyncForm {
       if (response) {
         App.update();
         App.getModal('createTransaction').close();
-      } else {
-        console.log(err);
-      }
+        this.element.reset();
+      } 
     });
   }
 }

@@ -42,9 +42,10 @@ class User {
       callback: (err, response) => {
         if (response.success) {
           this.setCurrent(response.user);
+        } else {
+          this.unsetCurrent();
         }
         callback(err, response);
-        this.unsetCurrent();
       }
     });
   }
