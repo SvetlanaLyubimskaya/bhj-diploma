@@ -11,7 +11,7 @@ const createRequest = (options = {}) => {
     URL = options.url;
 
     try {
-        xhr.open(options.method, URL);
+        xhr.open(options.method, URL, true);
     } catch (err) {
         console.log(err);
         options.callback(err);
@@ -35,12 +35,11 @@ const createRequest = (options = {}) => {
     }
 
     xhr.onload = function () {
-        // console.log(xhr.response);
         options.callback(xhr.status, xhr.response);
     };
 
     xhr.onerror = function () {
         console.log(xhr.status, xhr.statusText, xhr.response);
     };
-
+    
 };

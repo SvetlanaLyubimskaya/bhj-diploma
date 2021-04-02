@@ -37,7 +37,8 @@ class AccountsWidget {
       App.getModal('createAccount').open();
     });
 
-    this.element.addEventListener('click', (e) => {
+    const accountsPanel = document.querySelector('.accounts-panel');
+    accountsPanel.addEventListener('click', (e) => {
       e.preventDefault();
       //возвращает ближайшего предка,соответствующего селектору. на котором был клик
       const account = e.target.closest('.account'); 
@@ -78,7 +79,9 @@ class AccountsWidget {
    * */
   clear() {
     const account = this.element.querySelectorAll( '.account' );
-    account.forEach( item => item.remove());
+    account.forEach( item => {
+      this.element.removeChild(item);
+    });
   }
 
   /**
@@ -135,6 +138,6 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(item){
-    this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
+    this.element.insertAdjacentHTML('beforeEnd', this.getAccountHTML(item));
   }
 }

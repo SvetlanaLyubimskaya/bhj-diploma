@@ -24,8 +24,8 @@ class TransactionsWidget {
    * экземпляра окна
    * */
   registerEvents() {
-    const createIncomeButton = this.element.querySelector( '.create-income-button' );
-    const createExpenseButton = this.element.querySelector( '.create-expense-button' );
+    const createIncomeButton = document.querySelector( '.create-income-button' );
+    const createExpenseButton = document.querySelector( '.create-expense-button' );
 
     createIncomeButton.addEventListener( 'click', (e) => {
       e.preventDefault();

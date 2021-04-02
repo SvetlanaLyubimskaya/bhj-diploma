@@ -22,9 +22,7 @@ class CreateTransactionForm extends AsyncForm {
         const accountsSelect = this.element.querySelector('.accounts-select');
         accountsSelect.innerHTML = '';
         // исп метод forEach для вывода списка счетов
-        accountsSelect.insertAdjacentHTML('beforeEnd', response.data.forEach(element => {
-          return `<option value="${element.id}">${element.name}</option>`
-        }));
+        response.data.forEach(element => accountsSelect.innerHTML += `<option value="${element.id}">${element.name}</option>`);
       } 
     });
     
@@ -38,9 +36,10 @@ class CreateTransactionForm extends AsyncForm {
    * */
   onSubmit(options) {
     Transaction.create(options, (err, response) => {
-      if (response) {
+      if (response.success) {
         App.update();
-        App.getModal('createTransaction').close();
+        App.getModal('newIncome').close();
+        App.getModal('newExpense').close();
         this.element.reset();
       } 
     });

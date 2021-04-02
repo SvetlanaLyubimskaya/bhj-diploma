@@ -39,7 +39,7 @@ class Entity {
    * Удаляет информацию о счёте или доходе/расходе
    * (в зависимости от того, что наследуется от Entity)
    * */
-  static remove(data, callback = f => f ) {
+  static remove(id = '', data, callback = f => f ) {
     return createRequest({
       url: this.URL,
       data: data,

@@ -15,9 +15,8 @@ class Modal {
     this.element = element;
     if (!this.element) {
       throw new Error('Переданный элемент не существует')
-    } else {
-      this.registerEvents();
     }
+    this.registerEvents();
   }
 
   /**

@@ -63,7 +63,7 @@ class User {
       responseType: 'json',
       data: data,
       callback: (err, response) => {
-        if (response.success) {
+        if (response) {
           this.setCurrent(response.user);
         }
         callback(err, response);

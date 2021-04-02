@@ -22,7 +22,7 @@ class TransactionsPage {
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render();
+    this.render(this.lastOptions);
   }
 
   /**
@@ -32,19 +32,19 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    const removeAccount = document.querySelector('.remove-account');
-    removeAccount.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.removeAccount();
-    });
-
     
     this.element.addEventListener('click', (e) => {
       e.preventDefault();
-      const transactionRemove = document.querySelector('.transaction__remove');
+
+      const transactionRemove = e.target.closest('.transaction__remove');
       if (transactionRemove) {
         let id = e.target.dataset.id; // Отслеживает нажатие на кнопку удаления транзакции
         this.removeTransaction(id);
+      }
+
+      const accountRemove = e.target.closest('.remove-account');
+      if (accountRemove) {
+        this.removeAccount();
       }
     })
   }
@@ -66,10 +66,10 @@ class TransactionsPage {
       let id = this.lastOptions.account_id;
       Account.remove(id, {}, (err, response) => {
         if (response.success) {
+          this.clear();
           App.updateWidgets();
         }
       });
-      this.clear();
     }
   }
 
@@ -101,7 +101,7 @@ class TransactionsPage {
     }
     this.lastOptions = options;
 
-    Account.get(options.account_id, (err, response) => {
+    Account.get(options.account_id, options, (err, response) => {
       if (response.success) {
         this.renderTitle(response.data.name);
       }
@@ -109,7 +109,7 @@ class TransactionsPage {
 
     Transaction.list(options, (err, response) => {
       if (response.success) {
-        this.renderTransactions(response.data.item);
+        this.renderTransactions(response.data);
       }
     });
     
@@ -138,13 +138,17 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    const dateNew = new Date();
+    const dateNew = new Date(date);
     let year = dateNew.getFullYear();
     let month = dateNew.getMonth();
-    let day = dateNew.getDay();
+    let day = dateNew.getDate();
     let hour = dateNew.getHours();
     let minute = dateNew.getMinutes();
     let second = dateNew.getSeconds();
+
+    if (day < 10) {
+      day = '0' + day;
+    }
 
     if (hour < 10) {
       hour = '0' + hour;
@@ -154,7 +158,11 @@ class TransactionsPage {
       minute = '0' + minute;
     }
 
-    let time = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+    if (second < 10) {
+      second = '0' + second;
+    }
+
+    let time = `${day}-${month}-${year} ${hour}:${minute}:${second}`;
     return time;
   }
 
@@ -163,7 +171,7 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
-    let dateTransaction = this.formatDate();
+    let dateTransaction = this.formatDate(item.created_at);
     let HTML = `<div class="transaction transaction_${item.type} row">
     <div class="col-md-7 transaction__details">
       <div class="transaction__icon">
@@ -198,6 +206,9 @@ return HTML;
   renderTransactions(data){
     const content = document.querySelector('.content');
     content.innerHTML = '';
-    content.insertAdjacentHTML('afterBegin', this.getTransactionHTML(data));
+    for (let i = 0; i < data.length; i++) {
+      content.innerHTML += this.getTransactionHTML(data[i]);
+    }
+    
   }
 }
