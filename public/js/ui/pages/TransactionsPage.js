@@ -81,6 +81,7 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     if (confirm('Вы действительно хотите удалить эту транзакцию?')) {
+      let id = this.lastOptions.account_id;
       Transaction.remove(id, {}, (err, response) => {
         if (response.success) {
           App.update();

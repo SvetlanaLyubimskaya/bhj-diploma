@@ -10,12 +10,12 @@ const createRequest = (options = {}) => {
     console.log(options);
     URL = options.url;
 
-    try {
-        xhr.open(options.method, URL, true);
-    } catch (err) {
-        console.log(err);
-        options.callback(err);
-    }
+    // try {
+    //     xhr.open(options.method, URL, true);
+    // } catch (err) {
+    //     console.log(err);
+    //     options.callback(err);
+    // }
     
     if (options.method == 'GET') {
         
@@ -24,14 +24,27 @@ const createRequest = (options = {}) => {
             URL += `${key}=${options.data[key]}&`;
         }
         URL = URL.substring(0, URL.length - 1);
-        xhr.send();
+
+        try {
+            xhr.open(options.method, URL, true);
+            xhr.send();
+        } catch (err) {
+            options.callback(err);
+        }
+       
     } else {
         const formData = new FormData();
 
         for (let key in options.data) {
             formData.append(key, options.data[key]);
         }
-        xhr.send(formData);
+        
+        try {
+            xhr.open(options.method, URL, true);
+            xhr.send(formData);
+        } catch (err) {
+            options.callback(err);
+        }
     }
 
     xhr.onload = function () {

@@ -79,9 +79,7 @@ class AccountsWidget {
    * */
   clear() {
     const account = this.element.querySelectorAll( '.account' );
-    account.forEach( item => {
-      this.element.removeChild(item);
-    });
+    account.forEach( item => item.remove());
   }
 
   /**
