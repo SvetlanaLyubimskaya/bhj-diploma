@@ -47,24 +47,14 @@
       "id": "vttv74xckmiuh8w2"
     },
     {
-      "name": "Сбербанк",
-      "user_id": "vttv75ykkmivw51e",
-      "id": "vttv7ajwkmooaby7"
-    },
-    {
-      "name": "ВТБ",
-      "user_id": "vttv75ykkmivw51e",
-      "id": "vttv77tkkmopwfe6"
-    },
-    {
       "name": "ПочтаБанк",
       "user_id": "vttv75ykkmivw51e",
       "id": "vttv7b20kmoqcisd"
     },
     {
-      "name": "втб",
-      "user_id": "vttv76y0kmiuelci",
-      "id": "vttv732kkmor5kw6"
+      "name": "Сбербанк",
+      "user_id": "vttv75ykkmivw51e",
+      "id": "vttv7cbkkn982ur2"
     }
   ],
   "transactions": [
@@ -204,76 +194,22 @@
       "user_id": "1"
     },
     {
-      "id": "vttv7660kn0ogimu",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
+      "id": "vttv75hwkn5q1s1a",
+      "type": "income",
+      "name": "аванс",
+      "sum": 5000,
+      "account_id": "vttv7b20kmoqcisd",
       "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:05:57.077Z"
+      "created_at": "2021-04-06T07:49:19.533Z"
     },
     {
-      "id": "vttv7aewkn0oglv8",
-      "type": "expense",
+      "id": "vttv748wkn98a6a6",
+      "type": "income",
       "name": "Еда",
       "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:06:01.267Z"
-    },
-    {
-      "id": "vttv72s8kn0ogmg4",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:06:02.019Z"
-    },
-    {
-      "id": "vttv72nokn0oj6r2",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:08:01.645Z"
-    },
-    {
-      "id": "vttv7bbckn0ojgpy",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:08:14.565Z"
-    },
-    {
-      "id": "vttv7edkkn0orp4v",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:14:38.718Z"
-    },
-    {
-      "id": "vttv75bokn0p6xlo",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:26:29.531Z"
-    },
-    {
-      "id": "vttv7eiwkn0pqgfn",
-      "type": "expense",
-      "name": "Еда",
-      "sum": 150,
-      "account_id": "vttv7ajwkmooaby7",
-      "user_id": "vttv75ykkmivw51e",
-      "created_at": "2021-04-02T19:41:40.402Z"
+      "account_id": "vttv74xckmiuh8w2",
+      "user_id": "vttv76y0kmiuelci",
+      "created_at": "2021-04-08T18:43:02.861Z"
     }
   ]
 }

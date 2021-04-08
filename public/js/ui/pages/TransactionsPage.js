@@ -38,7 +38,7 @@ class TransactionsPage {
 
       const transactionRemove = e.target.closest('.transaction__remove');
       if (transactionRemove) {
-        let id = e.target.dataset.id; // Отслеживает нажатие на кнопку удаления транзакции
+        let id = this.lastOptions.account_id; 
         this.removeTransaction(id);
       }
 
@@ -66,10 +66,11 @@ class TransactionsPage {
       let id = this.lastOptions.account_id;
       Account.remove(id, {}, (err, response) => {
         if (response.success) {
-          this.clear();
+          // this.clear();
           App.updateWidgets();
         }
       });
+      this.clear();
     }
   }
 
@@ -81,7 +82,8 @@ class TransactionsPage {
    * */
   removeTransaction( id ) {
     if (confirm('Вы действительно хотите удалить эту транзакцию?')) {
-      let id = this.lastOptions.account_id;
+      console.log('click');
+      console.log(this.id)
       Transaction.remove(id, {}, (err, response) => {
         if (response.success) {
           App.update();
@@ -205,7 +207,7 @@ return HTML;
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    const content = document.querySelector('.content');
+    const content = this.element.querySelector('.content');
     content.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
       content.innerHTML += this.getTransactionHTML(data[i]);

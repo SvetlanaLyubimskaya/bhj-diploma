@@ -35,8 +35,8 @@ class User {
    * */
   static fetch(data, callback = f => f) {
     return createRequest({
-      url: this.URL + '/login',
-      method: 'POST',
+      url: this.URL + '/current',
+      method: 'GET',
       responseType: 'json',
       data: data,
       callback: (err, response) => {

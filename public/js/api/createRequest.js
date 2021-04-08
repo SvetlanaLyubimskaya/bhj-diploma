@@ -10,13 +10,6 @@ const createRequest = (options = {}) => {
     console.log(options);
     URL = options.url;
 
-    // try {
-    //     xhr.open(options.method, URL, true);
-    // } catch (err) {
-    //     console.log(err);
-    //     options.callback(err);
-    // }
-    
     if (options.method == 'GET') {
         
         URL += '?';
@@ -33,7 +26,7 @@ const createRequest = (options = {}) => {
         }
        
     } else {
-        const formData = new FormData();
+        let formData = new FormData();
 
         for (let key in options.data) {
             formData.append(key, options.data[key]);
